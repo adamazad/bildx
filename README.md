@@ -1,5 +1,7 @@
 # BildX
 
+[![Tests status](https://github.com/adamazad/bildx/workflows/Tests/badge.svg)](https://github.com/adamazad/bildx/actions)
+
 The self-hosted version of [imgix](https://imgix.com/) for micro projects. PRs are welcome.
 
 ## Getting started
