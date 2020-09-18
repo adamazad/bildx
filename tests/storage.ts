@@ -16,7 +16,7 @@ describe('BildX Storage', () => {
   });
 
   test('Should throw error with message Storage path must be absolute', () => {
-    const createStorage = () => new BildXStorage('../storage');
+    const createStorage = () => new BildXStorage('./storage');
     expect(createStorage).toThrowError(BildXError);
   });
 
