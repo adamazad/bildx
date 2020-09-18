@@ -1,0 +1,38 @@
+# BildX
+
+The self-hosted version of [imgix](https://imgix.com/) for micro projects. PRs are welcome.
+
+## Getting started
+
+Install from via [npm](https://npmjs.com/packages/bildx)
+
+```
+$ npm i bildx
+```
+
+Create a instance, and call `start`. Put images in `storage`
+
+```javascript
+import BildX from 'bildx';
+import { resolve } from 'path';
+
+const BILDX_PORT = process.env.BILDX_PORT || 4000;
+
+const bildx = new BildX({
+  storage: new BildX.Storage(resolve(__dirname, "./storage')),
+})
+
+bildx.start(BILDX_PORT, () => console.log(`BildX deployed on ${BILDX_PORT}`))
+```
+
+## Tests
+
+```
+npm test
+```
+
+## TODOs
+
+- Implement all [the APIs](https://docs.imgix.com/apis/url) imgix provides
+- Support for S3 and/or Firebase Storage
+- Redis cache layer with TTL
