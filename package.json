@@ -14,7 +14,7 @@
     "dist/"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "dev": "nodemon --exec ts-node src/index.ts",
     "prebuild": "rm -rf ./dist",
     "build": "tsc"
