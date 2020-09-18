@@ -8,8 +8,7 @@ describe('BildX Storage', () => {
   const storagePath = Path.resolve(__dirname, './storage'); // <rootDir>/tests/storage
   // BildX instance
   const bildXStorage = new BildXStorage(storagePath);
-
-  //
+  // Test image
   const testImageName = 'joshua-rondeau-ecScGr6Oicw-unsplash.jpg';
 
   test('Storage and Cache path should match', () => {
@@ -46,7 +45,6 @@ describe('BildX Storage', () => {
   test('Should Return buffer of the file', async () => {
     // Read the test as buffer
     const testFileBuffer = await Fs.readFile(Path.resolve(storagePath, testImageName));
-
     expect(await bildXStorage.getFile(testImageName)).toEqual(testFileBuffer);
   });
 });
