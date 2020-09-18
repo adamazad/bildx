@@ -1,5 +1,6 @@
 import Mime from 'mime';
 import Path from 'path';
+import { Server } from 'http';
 import hash from 'object-hash';
 import SharpEngine, { Sharp } from 'sharp';
 import HttpExpress, { Express, Request, Response } from 'express';
@@ -18,6 +19,7 @@ interface BildX {
   bildEngine: Sharp;
   bildExists(bildId: string): Promise<boolean>;
   start(port: number): Promise<void | undefined>;
+  stop(): Promise<void | undefined>;
 }
 
 type BildXConfig = {
@@ -42,6 +44,8 @@ class BildX implements BildX {
 
   // Cache interface: default is redis
   cache: BildXStorage;
+
+  server: Server;
 
   /**
    * Creates an BildX instance
@@ -170,7 +174,22 @@ class BildX implements BildX {
    */
   start(port: number): Promise<void | undefined> {
     return new Promise((resolve) => {
-      this.http.listen(port, resolve);
+      this.server = this.http.listen(port, resolve);
+    });
+  }
+
+  /**
+   * Stops listening
+   */
+  stop(): Promise<void | undefined | Error> {
+    return new Promise((resolve, reject) => {
+      this.server.close((err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
     });
   }
 }
