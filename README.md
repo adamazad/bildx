@@ -6,7 +6,7 @@ The self-hosted version of [imgix](https://imgix.com/) for micro projects. PRs a
 
 ## Getting started
 
-Install from via [npm](https://npmjs.com/packages/bildx)
+Install from via [npm](https://npmjs.com/package/bildx)
 
 ```
 $ npm i bildx
