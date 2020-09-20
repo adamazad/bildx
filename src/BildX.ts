@@ -143,16 +143,20 @@ class BildX implements BildX {
     // Create sharp Image
     const sharpImage = SharpEngine(input);
     // Blur option
-    if (options.blur) {
-      sharpImage.blur(options.blur);
+    try {
+      sharpImage.blur(Number(options.blur) || undefined);
+    } catch (e) {
+      // Sharp throws an error sigma value is invalid
     }
-    // Resize: width, height or fit
-    if (options.width || options.height || options.fit) {
+    // Resize
+    try {
       sharpImage.resize({
         width: Number(options.width) || undefined,
         height: Number(options.height) || undefined,
         fit: options.fit || undefined,
       });
+    } catch (e) {
+      // Catch error
     }
     // Return the buffer
     return sharpImage;
