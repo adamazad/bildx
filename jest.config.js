@@ -5,5 +5,5 @@ module.exports = {
   },
   testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testTimeout: 15000,
+  testTimeout: 20000,
 };
