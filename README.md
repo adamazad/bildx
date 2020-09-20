@@ -28,6 +28,17 @@ const bildx = new BildX({
 bildx.start(BILDX_PORT).then(() => console.log(`BildX deployed on ${BILDX_PORT}`)
 ```
 
+`BildX.Storage` throws an error otherwise if supplied path is not absolute.
+
+## APIs
+
+Currently, BildX supports:
+
+- `width`
+- `height`
+- `fill`
+- `blur`
+
 ## Tests
 
 ```
