@@ -2,13 +2,12 @@ import Path from 'path';
 import Sharp from 'sharp';
 import request from 'supertest';
 import { BildX, BildXStorage } from '../src';
+// Helpers
+import { assertSimilar, images } from './helpers';
 
 describe('BildX', () => {
   const BILDX_PORT = 5000;
-  const testImageName = 'joshua-rondeau-ecScGr6Oicw-unsplash.jpg';
-  const testImagePath = Path.resolve(__dirname, './storage/', testImageName);
   let bildX: BildX;
-  let testImageMetadata: Sharp.Metadata;
 
   beforeAll(async () => {
     // Create an instance
@@ -17,7 +16,6 @@ describe('BildX', () => {
       cache: new BildXStorage(Path.resolve(__dirname, './cache')),
     });
     await bildX.start(BILDX_PORT);
-    testImageMetadata = await Sharp(testImagePath).metadata();
   });
 
   afterAll(async () => {
@@ -26,24 +24,27 @@ describe('BildX', () => {
 
   describe('Original image request', () => {
     test('Should be of type image/jpeg', (done) => {
-      request(bildX.server).get(`/${testImageName}`).expect('Content-Type', /image\/jpeg/, done);
+      request(bildX.server).get(`/${images.stockholm.name}`).expect('Content-Type', /image\/jpeg/, done);
     });
 
     test('Dimensions should match the original', async () => {
-      const res = await request(bildX.server).get(`/${testImageName}`);
+      const res = await request(bildX.server).get(`/${images.stockholm.name}`);
       // Response
-      const { height, width } = await Sharp(res.body).metadata();
+      const expected = await Sharp(images.stockholm.path).metadata();
+      const actual = await Sharp(res.body).metadata();
       // Match the dimensions
-      expect(width).toEqual(testImageMetadata.width);
-      expect(height).toEqual(testImageMetadata.height);
+      expect(actual.width).toEqual(expected.width);
+      expect(actual.height).toEqual(expected.height);
     });
 
     test('Dimensions should return a 200px width image', async () => {
-      const res = await request(bildX.server).get(`/${testImageName}?width=200`);
+      const expectedWidth = 200;
+      const res = await request(bildX.server).get(`/${images.stockholm.name}?width=${expectedWidth}`);
       // Response
       const { width } = await Sharp(res.body).metadata();
       // Match the dimensions
-      expect(width).toEqual(200);
+      expect(width).toEqual(expectedWidth);
+    });
     });
   });
 });
