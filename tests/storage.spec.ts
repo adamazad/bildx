@@ -2,6 +2,8 @@ import Path from 'path';
 import { promises as Fs } from 'fs';
 import BildXError from '../src/BildXError';
 import BildXStorage from '../src/Storage';
+// Helpers
+import { images } from './helpers';
 
 describe('BildX Storage', () => {
   // Absolute path
@@ -37,9 +39,8 @@ describe('BildX Storage', () => {
   });
 
   test('Should Return an array of one element', async () => {
-    expect(await bildXStorage.getFiles()).toEqual([
-      testImageName,
-    ]);
+    const expectedImageList = Object.values(images).map(({ name }) => name);
+    expect(await bildXStorage.getFiles()).toEqual(expectedImageList);
   });
 
   test('Should Return buffer of the file', async () => {
