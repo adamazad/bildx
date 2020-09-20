@@ -32,7 +32,7 @@ type BildXBildOptions = {
   width?: Number | string | undefined;
   height?: Number | string | undefined;
   fit?: 'contain' | 'cover' | 'fill' | 'inside' | 'outside' | undefined;
-  blur?: number | boolean | undefined;
+  blur?: number | boolean | string | undefined;
 }
 
 class BildX implements BildX {
