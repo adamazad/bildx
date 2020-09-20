@@ -45,6 +45,15 @@ describe('BildX', () => {
       // Match the dimensions
       expect(width).toEqual(expectedWidth);
     });
+
+    test('Sigma s value of 100 sshould match3', async () => {
+      const blur = 100;
+      const res = await request(bildX.server).get(`/${images.stockholm.name}?blur=${blur}`);
+      const expectedBlur = await Sharp(images.stockholm.path).blur(blur).toBuffer();
+      // Buffer should match
+      expect(assertSimilar(expectedBlur, res.body, {
+        threshold: 2,
+      })).resolves.toBe(true);
     });
   });
 });
