@@ -28,7 +28,7 @@ const bildx = new BildX({
 bildx.start(BILDX_PORT).then(() => console.log(`BildX deployed on ${BILDX_PORT}`)
 ```
 
-`BildX.Storage` throws an error otherwise if supplied path is not absolute.
+Note: `BildX.Storage` throws an error if path is not absolute.
 
 ## APIs
 
