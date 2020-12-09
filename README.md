@@ -49,4 +49,3 @@ $ npm test
 
 - Implement all [the APIs](https://docs.imgix.com/apis/url) imgix provides
 - Support for S3 and/or Firebase Storage
-- Redis cache layer with TTL
