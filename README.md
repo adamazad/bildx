@@ -25,7 +25,7 @@ const bildx = new BildX({
   cache: new BildX.Storage(resolve(__dirname, "./cache")),
 })
 
-bildx.start(BILDX_PORT).then(() => console.log(`BildX deployed on ${BILDX_PORT}`)
+bildx.start(BILDX_PORT).then(() => console.log(`BildX deployed on ${BILDX_PORT}`))
 ```
 
 Note: `BildX.Storage` throws an error if path is not absolute.
