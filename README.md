@@ -21,8 +21,8 @@ import { resolve } from "path"
 const BILDX_PORT = process.env.BILDX_PORT || 4000
 
 const bildx = new BildX({
-  storage: new BildX.Storage(resolve(__dirname, "./storage")),
-  cache: new BildX.Storage(resolve(__dirname, "./cache")),
+  storage: new BildXStorage(resolve("./storage")),
+  cache: new BildXStorage(resolve("./cache")),
 })
 
 bildx.start(BILDX_PORT).then(() => console.log(`BildX deployed on ${BILDX_PORT}`)
